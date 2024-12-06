@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>00</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="img/icon.png" type="image/icon type">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+
+
+<style> 
+
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #4e54c8, #6b88ff);
+   
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none; /* Oculta o botão inicialmente */
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.back-to-top:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+</style>
+
+
+
+
+
+
+
+
+<body>
+    <header>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+            </label>
+            
+            <ul>
+               
+               
+               
+               
+               
+               
+               
+                <li><a class="active" href="#main">Home</a></li>
+                <li><a href="#about">Pontos Negativos</a></li>
+                <li><a href="#projects">Pontos Positivos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main" id="main">
+        <div class="main-img-div">
+            <img src="data:image/jpeg;base64,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" class="main-img" />
+        </div>
+        <div class="main-text">
+            <div>
+                <br><span class="main-text-name">Tecnologia     <h1 class="main-text-h">na educaçao</h1></span></h1>
+                <p class="main-text-p">Tecnologia é a técnica evoluída, que é fruto de ideias do passado que ao longo dos anos foram sendo modificadas e aprimoradas, principalmente após 1970, início da terceira Revolução Industrial, quando o conhecimento científico e a pesquisa deram um salto gigantesco,os avanços tecnológicos têm como objetivo apresentar novidades às indústrias, além de contribuir para o mercado especulativo. Na medicina revolucionou tratamentos, criou vacinas, descobriu a cura de doenças e com tudo isso melhorou a qualidade de vida, elevando também a expectativa.
+
+        </p>
+                <a href="#projects" class="main-text-a">Pontos Positivos</a>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="about" id="">
+        <h1 class="about-h"></h1>
+        <div class="about-cards">
+            <div class="about-card">
+               
+                <h1 class="about-card-h"><span class="card-special">As </span>tecnologias possui grandes vantagens</h1>
+            </div>
+            <div class="about-card">
+                <h1 class="about-card-h"><span class="card-special"> </span>como tambem possui suas desvantagens</h1>
+            </div>
+        </div>
+
+
+        <div class="who-am-i">
+            <h1 class="who-am-i-h">Historia da Tecnologia</h1>
+            <p class="who-am-i-p">Na Pré-História, os seres humanos deram os primeiros passos rumo ao desenvolvimento tecnológico. A necessidade de sobreviver em um ambiente hostil e a busca por melhores condições de vida levaram ao surgimento das primeiras ferramentas e utensílios básicos, como machados de pedra, lanças e fogueiras. Essas invenções simples, mas fundamentais, permitiram aos nossos ancestrais caçar, se proteger e se aquecer, contribuindo para a sua adaptação e evolução.
+
+                Com o passar do tempo, novas descobertas e invenções foram surgindo, marcando a Antiguidade e impulsionando o progresso da humanidade. A invenção da roda, por exemplo, revolucionou o transporte e o comércio, facilitando a movimentação de pessoas e mercadorias. A descoberta da metalurgia, por sua vez, possibilitou a criação de ferramentas e armas mais eficientes, além de permitir o desenvolvimento de estruturas mais resistentes e duráveis. Outro marco importante foi a invenção da escrita, que possibilitou o registro e a transmissão do conhecimento, abrindo caminho para o desenvolvimento da ciência, da filosofia e da cultura<span class="orange-span"></span>.</p>
+        </div>
+
+
+
+
+
+        <div class="who-am-i">
+            <div class="projects" id="projects">
+
+            <h1 class="who-am-i-h">Pontos Positivos</h1>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSRzLL1fA7Z6YGlAE4_LrhSHu3y6fBDDsAow&s" alt="">
+
+            <p class="who-am-i-p">Aumento do engajamento e motivação dos alunos: 
+                Às atividades educacionais que utilizam tecnologia são mais atrativas e estimulantes, o que incentiva os alunos a participarem mais ativamente do processo de aprendizagem. Como falamos no início do texto, algumas plataformas podem oferecer experiências bastante interativas, tornando o estudo ainda mais interessante e facilitando o seu aprendizado, por está sendo visto de forma mais prática. 
+                
+                Acesso a informações relevantes: 
+                Com a internet e os recursos digitais, os alunos podem ter acesso a uma grande quantidade de informações relevantes para os estudos. Porém é importante destacar que as escolas devem sempre está monitorando o uso dos portais de pesquisa pelos seus alunos, quando foram realizar esse tipo de atividade. Destacamos dois exemplos que podem ser utilizados neste ponto: Youtube Edu e TV Escola. 
+                
+                Tutoriais e conteúdos didáticos: 
+                É possível criar tutoriais e conteúdos didáticos para que os alunos possam revisar e aprofundar seus estudos, principalmente em casa, se houver alguma dúvida sobre o conteúdo estudado. Tornar o ensino mais prático, leva o aluno a se interessar mais sobre o assunto, pois nada melhor do que ver as palavras e teorias saindo do escrito, para a realidade. 
+                
+                Personalização do ensino: 
+                Com a tecnologia, é possível personalizar o ensino de acordo com as necessidades e habilidades dos alunos, tornando o processo mais eficiente e produtivo. Devemos ter em mente, que cada aluno é único, então seu modo de aprendizado vai ser diferente para cada um e as plataformas de ensino, podem ajudar nesse ponto.
+                
+                Colaboração e trabalho em equipe:
+                As tecnologias colaborativas, como as plataformas de compartilhamento de documentos e as ferramentas de comunicação, podem ajudar os alunos a trabalharem em equipe e a colaborarem uns com os outros.
+                
+                Podemos ver que as plataformas educacionais online oferecem múltiplas opções de recursos, como vídeos, áudios, jogos, testes, que ampliam a variedade de estratégias metodológicas, que podem ser usadas no ensino, sendo devidamente orientadas e supervisionada pelos professores, durante o seu uso,algumas plataformas que ajudam no auxílio Google Classroom: Como o próprio nome já diz, é uma sala de aula criada pelo Google, como forma de levar ao digital as atividades presenciais. Então é possível convidar os alunos da turma, criar atividades, atribuir tarefas, enviar mensagens  e acompanhar o progresso dos alunos, tudo de forma online.
+                Youtube Edu: Sabemos que Youtube é famoso por seus tutoriais e vídeos de desafios, mas o Youtube Edu veio com o intuito de levar ensinamentos das salas de aula para dentro da plataforma. Nele, você encontra várias playlists com sequência de vídeos sobre diversos assuntos, desde geografia a física. 
+                Kahoot: Plataforma excelente para se aprender, jogando. Com ela, é possível criar diversos questionários, sobre vários temas e dar as opções para os alunos selecionarem qual a resposta correta <span class="orange-span"></span>.</p>
+      
+      
+
+
+
+         
+
+
+
+
+
+        <div class="who-am-i">
+            <div class="about" id="about">
+            <h1 class="who-am-i-h">Pontos Negativos</h1>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD_SumhH1Ub5lHQ6qQjbnRUgXGH_zhxwB1Qw&s" alt="">
+
+            <p class="who-am-i-p">Dependência excessiva: 
+                O uso constante da tecnologia pode levar à dependência excessiva dos estudantes em relação a ela, prejudicando sua capacidade de pensar independentemente e resolver problemas sem a ajuda da tecnologia.
+                
+                Distração: 
+                A internet pode ser uma fonte de distração para os alunos, tornando difícil concentrar-se nas tarefas e atividades de aprendizagem. É importante o aluno ter em mente que, quando for usar alguma plataforma de estudo online, não vá em busca de outros conteúdos como assistir vídeos ou escutar música, para não se distrair e perder o foco.
+                
+                Fadiga visual: 
+                A exposição prolongada a telas pode causar fadiga visual, dores de cabeça e uma série de outros problemas de saúde. Dentro e fora da sala de aula, o uso, não só de plataformas como de material digital, exemplo de computadores, tablets e celulares, devem ser cronometrados, para não levar ao cansaço.
+                
+                Portanto, entendemos que é importante ressaltar que o uso da tecnologia na educação deve ser analisado de forma cuidadosa e crítica, com especial atenção às suas possíveis vantagens, desafios e desvantagens,É importante também ressaltar que a tecnologia não deve substituir completamente o ensino presencial. O contato físico e a interação humana são fundamentais para um aprendizado completo e harmonioso. É aí, que entra o papel do pedagogo. Ele será responsável por orientar e dar suporte ao professor, no gerenciamento do uso das plataformas digitais dentro do espaço escolar, escolhendo a melhor forma de criar atividades para os alunos, tanto presencial quanto digital. Saber dosar o uso da tecnologia, dentro e fora da sala de aula é um dos pontos principais para haver um equilíbrio e não haver dependência do seu uso. 
+
+                <span class="orange-span"></span></p>
+               
+               
+               
+
+
+        </div>
+
+
+
+<div>
+        <h1 class="who-am-i-h">Fontes</h1>
+        <h1 class="main-text-h">Faculdadegrau.com.br,programae.org.br,brasilescola.uol.com.br</p><span class="orange-span"></span></h1>
+    </div>
+
+
+
+
+
+    <div class="contact" id="contact">
+        <h1 class="contact-h">Contact Me</h1>
+        <div class="inner-contact">
+            <div class="my-contact">
+                <p class="links"><i class="fa-solid fa-phone"></i> +55 41 996732399</p>
+                <p class="links"><i class="fa-brands fa-whatsapp"></i> 41 996732399</p>
+                <p class="links"><a href="https://github.com/Teteu-Luciano" class="links-a" target=""><i class="fa-brands fa-github"></i> Matheus</a></p>
+            </div>
+            
+        </div>
+    
+
+
+
+
+
+    
+        
+        
+        
+        
+
+
+
+
+
+
+
+
+    <footer>
+        <div class="inner-footer">
+            <p class="inner-footer-p">©<span class="footer-special">Matheus 2C</span></p>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="back-to-top">↑</button>
+
+    <script src="script.js" type="text/javascript"></script>
+</body>
+
+</html>
